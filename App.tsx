@@ -8,6 +8,7 @@ import { ContactForm } from './components/ContactForm';
 import { ServiceRequestForm } from './components/ServiceRequest';
 import { AdminLogin } from './components/AdminLogin';
 import { AdminRequestManager } from './components/AdminRequestManager';
+import { WeightHeightCalculator } from './components/WeightHeightCalculator';
 import {
   Monitor,
   ChevronDown,
@@ -29,7 +30,8 @@ import {
   X,
   Sparkles,
   MousePointer2,
-  Cloud
+  Cloud,
+  Scale
 } from 'lucide-react';
 
 interface SectionProps {
@@ -110,7 +112,8 @@ const App: React.FC = () => {
     'security-keys': false,
     'credential-ledger': false,
     'temporal-calc': false,
-    'dimension-help': false
+    'dimension-help': false,
+    'weight-height': false
   });
 
   useEffect(() => {
@@ -389,6 +392,17 @@ const App: React.FC = () => {
             >
               <PrintDimensions />
             </CollapsibleSection>
+
+            <CollapsibleSection
+              id="weight-height"
+              title="Body Stats Calculator"
+              icon={<Scale />}
+              accentColor="bg-violet-600"
+              isOpen={sectionStates['weight-height']}
+              onToggle={handleToggle}
+            >
+              <WeightHeightCalculator />
+            </CollapsibleSection>
           </div>
         )}
       </main>
@@ -442,6 +456,13 @@ const App: React.FC = () => {
             >
               <UserCircle className="w-5 h-5 shrink-0" />
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 bg-slate-900 lg:bg-transparent text-white lg:text-slate-600 text-[9px] lg:text-[10px] font-black uppercase tracking-widest px-3 py-1.5 lg:p-0 rounded-lg opacity-0 lg:opacity-100 group-hover:opacity-100 lg:group-hover:text-blue-600 pointer-events-none lg:pointer-events-auto transition-all shadow-xl lg:shadow-none">Vault</span>
+            </button>
+            <button
+              onClick={() => jumpToSection('weight-height')}
+              className="p-3 text-slate-500 hover:text-blue-600 hover:bg-white lg:w-full lg:flex lg:items-center lg:gap-3 lg:px-4 lg:py-3.5 rounded-2xl transition-all group relative"
+            >
+              <Scale className="w-5 h-5 shrink-0" />
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 bg-slate-900 lg:bg-transparent text-white lg:text-slate-600 text-[9px] lg:text-[10px] font-black uppercase tracking-widest px-3 py-1.5 lg:p-0 rounded-lg opacity-0 lg:opacity-100 group-hover:opacity-100 lg:group-hover:text-blue-600 pointer-events-none lg:pointer-events-auto transition-all shadow-xl lg:shadow-none">Body</span>
             </button>
           </>
         )}
